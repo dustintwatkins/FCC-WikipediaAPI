@@ -1,0 +1,127 @@
+<!Doctype HTML>
+<html>
+  <head>
+    <!--Google font -->
+   <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <!--Stylesheet  -->
+    <link rel="stylesheet" type="text/css" href="main.css"> 
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+    <!--Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- Script -->
+    <script>
+	function getRandom(){
+  console.log("getRandom wiki pressed");
+  $("#randomButton").append("<br><br><button id = 'list'><a style='text-decoration: none;'  href = 'https://en.wikipedia.org/wiki/Special:Random'>Random Wiki!</button>");
+}//End get Random
+
+function searchWiki(){
+  var output = [];
+  console.log("searchwiki pressed");
+  var search = $("#searchText").val();
+  console.log(search);
+    var api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
+    var cb = '&origin=*';
+    var myurl = api+search+cb;
+    var page = 'https://en.wikipedia.org/?curid=';
+
+    console.log(myurl);
+  $.ajax({
+    url:myurl,
+    dataType:"json",
+      success:function(parsed_json){
+        console.log("success");
+        console.log(parsed_json);
+        var results = parsed_json.query.pages;
+        console.log(results);
+        angular.forEach(results, function(v,k)  {
+        output.push({title: v.title, body: v.extract, page: page + v.pageid});
+        });
+        outputList(output);
+      }//end success
+ })//end ajax
+}//End searchWiki
+
+function outputList(output){
+  console.log("entered output list");
+  console.log(output.length);
+  for(var i = 0; i < output.length; i++){
+      console.log(output[i].title);
+    $(".container").append("<br><br><button id = 'list'> <a style='text-decoration: none;' href = '" + output[i].page +"'>" + output[i].title + "</button>");
+  }
+ 
+}
+    </script>
+  </head>
+      
+  <body>
+    <div class = "container">
+    <h1>Click to see a random wiki</h1>
+    <p class = "button" id = "randomButton">
+    <button type = submit id = "btn" onclick ="getRandom()">Random</button>
+    </p>
+      <h1>Search for a wiki</h1>
+      <p>
+        <input type = "text" id="searchText" placeholder="Search...">
+        <br>
+        <br>       
+        <button type = "submit" id = "btn" onclick="searchWiki()">Search</button>
+      </p>
+    </div>
+  </body>
+  
+  
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

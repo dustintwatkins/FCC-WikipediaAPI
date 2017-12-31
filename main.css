@@ -1,0 +1,67 @@
+.container{
+  text-align:center;
+}
+.button{text-align:center;}
+#searchText{
+  width:200px;
+  height:25px;
+  border-radius:10px;
+}
+body{
+    font-family: 'Bree Serif', serif;
+    background-color:#000033;
+    color:white;
+}
+
+#btn{
+  font-family: 'Bree Serif', serif;
+  background-color:white;
+  padding:10px 32px;
+  border-radius:10px;
+  font-size:15px;
+}
+.searchResults{
+  text-align:center;
+}
+#list{
+   background-color:white;
+   color:#000033;
+   border-radius:10px;
+   font-size:20px;
+   padding:10px;
+   width:25%;
+}
+#list:hover{
+  background-color: #D3D3D3;
+  border-left: 7px solid #00FFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
